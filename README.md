@@ -1,1 +1,1 @@
-# haskell-pi
+# simple
