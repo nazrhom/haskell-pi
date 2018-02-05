@@ -16,6 +16,16 @@ RUN apt-get install netbase ca-certificates git
 
 RUN apt-get clean
 
+RUN mkdir -p $stack_global_path
+
+RUN echo "flags: {} \n\
+extra-package-dbs: [] \n\
+packages: [] \n\
+extra-deps: [] \n\
+resolver: $resolver_version" > $stack_global_path/stack.yaml
+
 RUN stack setup
 
-CMD ["bash", "/app/start.sh"]
+COPY . /app
+
+RUN cd /app && stack build
