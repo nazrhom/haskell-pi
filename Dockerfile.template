@@ -1,5 +1,7 @@
 FROM resin/rpi-raspbian:stretch
 
+ENV INITSYSTEM on
+
 RUN echo "deb http://archive.raspbian.org/raspbian stretch main" > /etc/apt/sources.list.d/scretch.list
 
 RUN apt-get update
@@ -11,10 +13,18 @@ ARG stack_global_path=/root/.stack/global-project
 
 RUN apt-get install ghc=$ghc_version cabal-install haskell-stack
 
+RUN apt-get install vim
+
 # stack setup requires we have tcp protocol support
 RUN apt-get install netbase ca-certificates git
 
 RUN apt-get clean
+
+# Enable UDP broadcast
+echo "0" > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
+
+# Restart systemctl
+systemctl -p
 
 RUN mkdir -p $stack_global_path
 

@@ -31,8 +31,6 @@ executables:
     source-dirs:         app
     ghc-options:
     - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
     dependencies:
     - haskell-pi
     - distributed-static
@@ -49,7 +47,5 @@ tests:
     source-dirs:         test
     ghc-options:
     - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
     dependencies:
     - haskell-pi
