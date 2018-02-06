@@ -21,7 +21,7 @@ RUN apt-get install netbase ca-certificates git
 RUN apt-get clean
 
 # Enable UDP broadcast
-echo "0" > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
+RUN echo "0" > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
 
 # Restart systemctl
 systemctl -p
