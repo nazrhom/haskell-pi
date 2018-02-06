@@ -24,7 +24,7 @@ RUN apt-get clean
 RUN echo "0" > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
 
 # Restart systemctl
-systemctl -p
+RUN systemctl -p
 
 RUN mkdir -p $stack_global_path
 
